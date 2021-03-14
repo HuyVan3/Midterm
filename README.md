@@ -20,7 +20,19 @@
 
 # Locality-sensitive hashing (LSH)
 - Thuật toán Locality-sensitive hashing là một kỹ thuật tính toán băm các item đầu vào giống nhau vào các "bộ chứa" (chunk, bucket) với xác suất cao. Vì các item giống nhau kết thúc trong cùng một bộ chứa, kỹ thuật này có thể được sử dụng để phân cụm dữ liệu và tìm kiếm lân cận. Nó khác với các kỹ thuật băm thông thường ở việc thuật toán sẽ hash các tài liệu gần giống với nhau vào chung một bucket (signature của các tài liệu càng giống nhau thì càng dễ va chạm).
--
+- LSH sẽ không cho ra chính xác k-nearest neighbors nhưng sẽ đưa ra gần đúng.
 ![bucket](https://mrhasankthse.github.io/riz/assets/images/Bucket-distribution.png)
 
-- \
+- Và khi muốn đối chiếu với một tài liệu đó thì sẽ gọi hàm hash ban đầu hàm hash sẽ trả về số của một bucket. Và trong bucket đó sẽ có các tập tài liệu được cho là gần giống với tài liệu đang đối chiếu nhất.
+- Để loại bỏ false positive chúng ta phải thực hiện tìm kiếm vét cạn trên các tài liệu trong cùng một bucket và khi đó sẽ ra được kết quả cuối cùng. 
+# Kết hợp Locality-sensitive hashing và MinHash
+- Như đã nói ở trên LSH là một kỹ thuật chọn ra nearest neighbours mà ở đây chính là tìm ra các tài liệu giống nhau nhất. Kỹ thuật này dựa trên một loại hashing đặc biệt có các signature có thể cho biết khoảng cách xa gần giữa các tài liệu về sự giống nhau. Dựa trên thông tin này LSH nhóm các tài liệu với nhau vào một bucket dựa trên sự suy đoán về độ giống nhau. Và nhiệm vụ của chúng ta là tạo ra các signature bằng Minhashing để cung cấp cho LSH.
+- Tổng hợp lại các bước của bài toán để tìm kiếm tài liệu cụ thể:
+  - Xây dựng một tập các k-shingles dựa trên các tập tài liệu.
+  - Hash các k-shingles thành các số nhỏ hơn (nếu có thể).
+  - Chọn độ dài cho signature để dùng Minhash.
+  - Sử dụng Minhash để tạo signature cho các tài liệu.
+  - Đem ma trận signature vào LSH
+  - Có được các tài liệu giống nhau của mỗi bucket.
+  - Chạy tìm kiếm vét cạn để kiểm tra độ giống nhau của các tài liệu trong cùng bucket
+  
