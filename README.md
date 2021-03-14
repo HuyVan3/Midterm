@@ -12,3 +12,12 @@
 # Kiểm tra độ giống giau với Jaccard Score
 - Jaccard score sẽ trả về giá trị trong khoảng [0,1] dựa trên mức độ giống nhau của các tập dữ liệu. Giá trị này được tính bằng hiệu số giữa phần giao của 2 tập hợp với phần hợp của 2 tập.
 ![jaccard](https://miro.medium.com/max/700/1*XiLRKr_Bo-VdgqVI-SvSQg.png)
+# MinHash
+- Tập hợp các k-shingles rất lớn dù có hash hay không vì thế mục đích của chúng ta là thay thế các k-shingles bằng các signatures nhỏ hơn. Các signature phải thể hiện ước lượng gần đúng về độ giống nhau của các tập tài liệu mà nó đại diện, signature càng lớn thì ước lượng càng chính xác.
+- Các signature này vẫn giữ được nội dung của tài liệu mà nó đại diện. Nếu lấy 2 signature của 2 tài liệu giống nhau đem đi so sánh thì sẽ thấy được nhiều điểm tương đồng và ngược lại
+- Thuật toán MinHash sẽ tạo ra các signature phù hợp với yêu cầu trên. 
+
+# Locality-sensitive hashing (LSH)
+- Thuật toán Locality-sensitive hashing là một kỹ thuật tính toán băm các item đầu vào giống nhau vào các "bộ chứa" (chunk, bucket) với xác suất cao. Vì các item giống nhau kết thúc trong cùng một bộ chứa, kỹ thuật này có thể được sử dụng để phân cụm dữ liệu và tìm kiếm lân cận. Nó khác với các kỹ thuật băm thông thường ở việc các va chạm băm được tối đa hóa, không được giảm thiểu.
+- Sử dụng thuật toán này chúng ta sẽ băm đầu vào là các signature vào các "bộ chứa" (chunk, bucket). Bây giờ chúng ta có thể lấy ngẫu nhiên một chunk của một signature và so sánh với một chunk khác của một signature khác
+![bucket](https://mrhasankthse.github.io/riz/assets/images/Bucket-distribution.png)
