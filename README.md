@@ -1,5 +1,5 @@
 # Midterm
-- LHS và Minhash là 2 thuật toán có thể so sánh và tìm kiếm các tài liệu giống nhau trong tập hợp các tài liệu lớn.
+- Locality-sensitive hashing và Minhash là 2 thuật toán có thể so sánh và tìm kiếm các tài liệu giống nhau trong tập hợp các tài liệu lớn.
 - Việc so sánh sẽ dựa vào độ giống nhau của mật độ từ (content similarity) không phải dựa trên độ giống nhau của ngữ nghĩa (semantic similarity).
 - Giả sử có một tập dữ liệu có n phần tử và hàm get_similarity(D1,D2). Hàm get_similarity(D1,D2) sẽ phải chạy n^2 lần và hàm phải so sánh từng từ trong tập D1 với từng từ trong tập D2 với m là số từ có trong mỗi tập. Hàm get_similarity(D1,D2) sẽ phải chạy (n^2) * m lần và không thực tế nếu thực thi trên bộ dữ liệu lớn.
 # Shingling
@@ -15,9 +15,12 @@
 # MinHash
 - Tập hợp các k-shingles rất lớn dù có hash hay không vì thế mục đích của chúng ta là thay thế các k-shingles bằng các signatures nhỏ hơn. Các signature phải thể hiện ước lượng gần đúng về độ giống nhau của các tập tài liệu mà nó đại diện, signature càng lớn thì ước lượng càng chính xác.
 - Các signature này vẫn giữ được nội dung của tài liệu mà nó đại diện. Nếu lấy 2 signature của 2 tài liệu giống nhau đem đi so sánh thì sẽ thấy được nhiều điểm tương đồng và ngược lại
+- Sự giống nhau của các signature thể hiện sự giống nhau về mặt nội dung của các tài liệu miễn là signature đó đảm bảo được độ chính xác về mặt nội dung mà nó đại diện.
 - Thuật toán MinHash sẽ tạo ra các signature phù hợp với yêu cầu trên. 
 
 # Locality-sensitive hashing (LSH)
-- Thuật toán Locality-sensitive hashing là một kỹ thuật tính toán băm các item đầu vào giống nhau vào các "bộ chứa" (chunk, bucket) với xác suất cao. Vì các item giống nhau kết thúc trong cùng một bộ chứa, kỹ thuật này có thể được sử dụng để phân cụm dữ liệu và tìm kiếm lân cận. Nó khác với các kỹ thuật băm thông thường ở việc các va chạm băm được tối đa hóa, không được giảm thiểu.
-- Sử dụng thuật toán này chúng ta sẽ băm đầu vào là các signature vào các "bộ chứa" (chunk, bucket). Bây giờ chúng ta có thể lấy ngẫu nhiên một chunk của một signature và so sánh với một chunk khác của một signature khác
+- Thuật toán Locality-sensitive hashing là một kỹ thuật tính toán băm các item đầu vào giống nhau vào các "bộ chứa" (chunk, bucket) với xác suất cao. Vì các item giống nhau kết thúc trong cùng một bộ chứa, kỹ thuật này có thể được sử dụng để phân cụm dữ liệu và tìm kiếm lân cận. Nó khác với các kỹ thuật băm thông thường ở việc thuật toán sẽ hash các tài liệu gần giống với nhau vào chung một bucket (signature của các tài liệu càng giống nhau thì càng dễ va chạm).
+-
 ![bucket](https://mrhasankthse.github.io/riz/assets/images/Bucket-distribution.png)
+
+- \
