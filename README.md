@@ -17,7 +17,7 @@
 - Các signature này vẫn giữ được nội dung của tài liệu mà nó đại diện. Nếu lấy 2 signature của 2 tài liệu giống nhau đem đi so sánh thì sẽ thấy được nhiều điểm tương đồng và ngược lại
 - Sự giống nhau của các signature thể hiện sự giống nhau về mặt nội dung của các tài liệu miễn là signature đó đảm bảo được độ chính xác về mặt nội dung mà nó đại diện.
 - Thuật toán MinHash sẽ tạo ra các signature phù hợp với yêu cầu trên. 
-
+![signature](https://storage.googleapis.com/lds-media/images/slide-1-permutation-1_ujmH4Ll.width-1200.png)
 # Locality-sensitive hashing (LSH)
 - Thuật toán Locality-sensitive hashing là một kỹ thuật tính toán băm các item đầu vào giống nhau vào các "bộ chứa" (chunk, bucket) với xác suất cao. Vì các item giống nhau kết thúc trong cùng một bộ chứa, kỹ thuật này có thể được sử dụng để phân cụm dữ liệu và tìm kiếm lân cận. Nó khác với các kỹ thuật băm thông thường ở việc thuật toán sẽ hash các tài liệu gần giống với nhau vào chung một bucket (signature của các tài liệu càng giống nhau thì càng dễ va chạm).
 - LSH sẽ không cho ra chính xác k-nearest neighbors nhưng sẽ đưa ra gần đúng.
