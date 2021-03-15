@@ -9,7 +9,7 @@
 # Preliminary-hashing (Optional)
 - Bước này không bắt buộc vì chỉ làm được nếu có thể map được k-shingles với một số nguyên. 
 - Nếu map được các k-shingles thì chúng ta biểu thị các tài liệu dưới dạng các hashed-shingle tuy nhiên số lượng các hashed-shingle không đồng đều giữa các tài liệu với nhau nếu tài liệu D1 lớn hơn D2 thì số lượng hashed-shingles của D1 sẽ nhiều hơn D2.
-# Kiểm tra độ giống giau với Jaccard Score
+# Kiểm tra độ giống nhau với Jaccard Score
 - Jaccard score sẽ trả về giá trị trong khoảng [0,1] dựa trên mức độ giống nhau của các tập dữ liệu. Giá trị này được tính bằng hiệu số giữa phần giao của 2 tập hợp với phần hợp của 2 tập.
 ![jaccard](https://miro.medium.com/max/700/1*XiLRKr_Bo-VdgqVI-SvSQg.png)
 # MinHash
